@@ -1,0 +1,27 @@
+import requests
+
+def create_order(product_id, quantity, customer_info):
+    url = "https://api.example.com/orders"  # 替换为实际的API URL
+    order_data = {
+        "product_id": product_id,
+        "quantity": quantity,
+        "customer_info": customer_info
+    }
+    
+    response = requests.post(url, json=order_data)
+    
+    if response.status_code == 201:
+        print("订单创建成功:", response.json())
+    else:
+        print("订单创建失败:", response.status_code, response.text)
+
+if __name__ == "__main__":
+    product_id = input("请输入产品ID: ")
+    quantity = int(input("请输入数量: "))
+    customer_info = {
+        "name": input("请输入客户姓名: "),
+        "address": input("请输入客户地址: "),
+        "email": input("请输入客户邮箱: ")
+    }
+    
+    create_order(product_id, quantity, customer_info)
